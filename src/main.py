@@ -4,9 +4,9 @@ import uvicorn
 from sqlalchemy.orm import Session
 from typing import List
 
-from models.books import Book as BookModel
-from models.authors import Author as AuthorModel
-from models.users import User as UserModel
+from schemas.book import Book as BookModel
+from schemas.author import Author as AuthorModel
+from schemas.user import User as UserModel
 
 
 app = FastAPI()

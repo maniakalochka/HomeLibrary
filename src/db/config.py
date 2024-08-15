@@ -17,4 +17,13 @@ DATABSE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB
 
 engine = create_async_engine(DATABSE_URL, echo=True)
 
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False, 
+    bind=engine, 
+    class_=AsyncSession)
+
+async def get_db():
+    async with SessionLocal() as session:
+        yield session
 
