@@ -1,0 +1,10 @@
+.venv/
+# Исключить папки
+venv/
+__pycache__/
+alembic/
+
+# Исключить файлы
+*.pyc
+*.log
+*.env
