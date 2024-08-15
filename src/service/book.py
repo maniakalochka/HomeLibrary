@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from db.book import Book as BookModel
+from models.book import Book as BookModel
 from schemas.book import BookCreate
 
 def create_book(db: Session, book: BookCreate):
