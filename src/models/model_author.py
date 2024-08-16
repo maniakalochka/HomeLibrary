@@ -9,4 +9,4 @@ class Author(Base):
     
     id = Column(Integer, primary_key=True, index=True)  
     fullname = Column(String, index=True, nullable=False)
-    books = relationship("Book", back_populates="authors")
+    books = relationship("Book", back_populates="author")

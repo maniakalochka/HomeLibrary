@@ -8,3 +8,5 @@ alembic/
 *.pyc
 *.log
 *.env
+
+alembic.ini
