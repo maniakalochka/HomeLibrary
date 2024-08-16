@@ -4,14 +4,15 @@ import uvicorn # type: ignore
 from sqlalchemy.orm import Session
 from typing import List
 
-from schemas.book import Book 
-from schemas.author import Author 
-from schemas.user import User 
-from routers import book
+from schemas.schema_book import Book 
+from schemas.schema_author import Author 
+from schemas.schema_user import User 
+from routers import router_author, router_book
 
 
 app = FastAPI()
-app.include_router(book.router, prefix="/books", tags=["books"])
+app.include_router(router_author.router, prefix="/authors", tags=["authors"])
+app.include_router(router_book.router, prefix="/books", tags=["books"])
 
 
 

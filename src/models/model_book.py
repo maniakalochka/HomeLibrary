@@ -15,6 +15,8 @@ class Book(Base):
     description = Column(String, nullable=True)
     publication_year = Column(Integer, nullable=True)
     page_count = Column(Integer, nullable=True)
+    
+    author_id = Column(Integer, ForeignKey('authors.id'))
     author = relationship("Author", back_populates="books") 
 
     def __repr__(self):
