@@ -1,8 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Date
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from db.db_config import Base
 
-Base = declarative_base()
 
 
 class Author(Base):
