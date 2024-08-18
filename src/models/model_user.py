@@ -7,7 +7,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Date
 from sqlalchemy.orm import relationship
 
 from db.db_config import get_db
-from src.db.db_config import Base
+from db.db_config import Base
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):
