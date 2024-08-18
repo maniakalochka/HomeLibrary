@@ -31,10 +31,6 @@ async def get_db():
     async with SessionLocal() as session:
         yield session
 
-async def get_user_db(session: AsyncSession = Depends(get_db)):
-    async with session() as session:
-        yield session
-
 async def init_db():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)

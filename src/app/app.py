@@ -9,6 +9,7 @@ from routers import router_author, router_book, router_user
 
 
 app = FastAPI()
-app.include_router(router_user.router, prefix="/users", tags=["users"])
+app.include_router(fastapi_users.get_users_router(auth_backend),
+                   prefix="/auth/jwt", tags=["auth"])
 app.include_router(router_author.router, prefix="/authors", tags=["authors"])
 app.include_router(router_book.router, prefix="/books", tags=["books"])
