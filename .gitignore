@@ -6,6 +6,7 @@ alembic/
 
 # Исключить файлы
 *.pyc
+*.idea
 *.log
 *.env
 

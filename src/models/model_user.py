@@ -1,10 +1,15 @@
+from fastapi_users.db import SQLAlchemyBaseUserTable
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.ext.declarative import DeclarativeMeta, declarative_base
 
-from sqlalchemy import Column, Integer, String
-from db.db_config import Base
-from fastapi_users.db import SQLAlchemyBaseUserTableUUID, SQLAlchemyUserDatabase
+from sqlalchemy import Column, Integer, String, ForeignKey, Date
+from sqlalchemy.orm import relationship
+
+from src.db.db_config import Base
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):
-    pass
-
-
+    id = Column(Integer, primary_key=True, index=True)
+    f_name = Column(String, nullable=False)
+    l_name = Column(String, nullable=False)
+    
