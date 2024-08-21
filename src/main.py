@@ -1,10 +1,7 @@
-import uvicorn
-import asyncio
+import uvicorn  # Веб-вервер для Python
+import asyncio 
 from db.db_config import init_db
-from fastapi import FastAPI
-
-
-from fastapi import Depends
+from fastapi import FastAPI, Depends
 
 from models.model_user import User 
 from fastapi_users import fastapi_users, FastAPIUsers
@@ -19,11 +16,13 @@ from app.users import auth_backend, current_active_user, fastapi_users
 app = FastAPI()
 
 
-fastapi_users = FastAPIUsers[User, int](
+fastapi_users = FastAPIUsers[User, int](  
     get_user_manager,
     [auth_backend],
-)
+)  # Модель пользователя, позволяет создавать, обновлять, удалять и искать пользователей
 
+
+# подключение маршрутизаторов к приложению, управляют юзерами и auth
 app.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
     prefix="/auth",
@@ -44,15 +43,17 @@ app.include_router(
     prefix="/users",
     tags=["users"],
 )
-app.include_router(router_author.router, prefix="/authors", tags=["authors"])
+# маршрутизация для авторов и книг
+app.include_router(router_author.router, prefix="/authors", tags=["authors"]) 
 app.include_router(router_book.router, prefix="/books", tags=["books"])
 
 @app.get("/authenticated-route")
 async def authenticated_route(user: User = Depends(current_active_user)):
+    """Защищенный маршрут для GET"""
     return {"message": f"Hello {user.email}!"}
 
 
-@app.on_event("startup")
+@app.on_event("startup")  # функция on_startup вызывает функции для события
 async def on_startup():
     await init_db()
 
