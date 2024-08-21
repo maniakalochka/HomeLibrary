@@ -1,5 +1,6 @@
 import uvicorn  # Веб-вервер для Python
 import asyncio 
+from auth.manager import auth_backend, current_active_user
 from db.db_config import init_db
 from fastapi import FastAPI, Depends
 
@@ -10,7 +11,7 @@ from auth.manager import get_user_manager
 
 from schemas.schema_user import UserCreate, UserRead, UserUpdate
 from routers import router_author, router_book, router_user
-from app.users import auth_backend, current_active_user, fastapi_users
+from auth.manager import fastapi_users
 
 
 app = FastAPI()
