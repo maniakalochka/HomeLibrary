@@ -1,5 +1,5 @@
 from fastapi import Depends, Request
-from fastapi_users import BaseUserManager, FastAPIUsers, UUIDIDMixin
+from fastapi_users import BaseUserManager, FastAPIUsers
 from fastapi_users.authentication import (
     AuthenticationBackend,
     BearerTransport,
@@ -10,10 +10,12 @@ from fastapi_users.db import SQLAlchemyUserDatabase
 
 from models.model_user import User, get_user_db
 
-SECRET = "SECRET"
+SECRET = "SECRET"  # секретный ключ o_O
 
 
 class UserManager(BaseUserManager[User, int]):
+    """Методы и логика для управления пользователями"""
+
     reset_password_token_secret = SECRET
     verification_token_secret = SECRET
 
