@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from schemas.schema_author import Author, AuthorCreate
-from db.db_config import get_db
+from repository.db_config import get_db
 from service.service_author import create_author, get_authors
 
 router = APIRouter()

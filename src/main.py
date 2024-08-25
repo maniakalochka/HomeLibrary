@@ -1,12 +1,12 @@
 import uvicorn  # Веб-вервер для Python
 import asyncio 
 from auth.manager import auth_backend, current_active_user
-from db.db_config import init_db
+from repository.db_config import init_db
 from fastapi import FastAPI, Depends
 
 from models.model_user import User 
 from fastapi_users import fastapi_users, FastAPIUsers
-from db.db_config import init_db
+from repository.db_config import init_db
 from auth.manager import get_user_manager
 
 from schemas.schema_user import UserCreate, UserRead, UserUpdate
