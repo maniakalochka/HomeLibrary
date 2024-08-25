@@ -1,5 +1,4 @@
 import os
-from fastapi import Depends
 
 from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
@@ -8,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 
 load_dotenv()  # загрузка .env
 
-DB_USER = os.getenv("DB_USER") 
+DB_USER = os.getenv("DB_USER")
 DB_PASS = os.getenv("DB_PASS")
 DB_HOST = os.getenv("DB_HOST")
 DB_NAME = os.getenv("DB_NAME")
@@ -20,7 +19,7 @@ engine = create_async_engine(DATABASE_URL, echo=True)
 
 # фабрика сессий
 SessionLocal = sessionmaker(
-    autocommit=False,   
+    autocommit=False,
     autoflush=False,
     bind=engine,
     class_=AsyncSession)
@@ -32,6 +31,7 @@ async def get_db():
     """получение сессии БД в асинхронном контексте."""
     async with SessionLocal() as session:
         yield session
+
 
 async def init_db():
     """Асинхронная инициализация БД"""

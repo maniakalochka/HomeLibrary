@@ -1,7 +1,6 @@
-
 from sqlalchemy import Column, Integer, String, ForeignKey, Date
 from sqlalchemy.orm import relationship
-from db.db_config import Base
+from src.db.db_config import Base
 
 
 class Book(Base):
@@ -12,9 +11,9 @@ class Book(Base):
     description = Column(String, nullable=True)
     publication_year = Column(Integer, nullable=True)
     page_count = Column(Integer, nullable=True)
-    
+
     author_id = Column(Integer, ForeignKey('authors.id'))
-    author = relationship("Author", back_populates="books") 
+    author = relationship("Author", back_populates="books")
 
     def __repr__(self):
         return f"<Book {self.title}>"
