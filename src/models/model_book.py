@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Date
 from sqlalchemy.orm import relationship
-from src.repository.db_config import Base
+from src.db.db_config import Base
 
 
 class Book(Base):
