@@ -18,18 +18,17 @@ DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{D
 engine = create_async_engine(DATABASE_URL, echo=True)
 
 # фабрика сессий
-SessionLocal = sessionmaker(
-    autocommit=False,
-    autoflush=False,
+async_session = sessionmaker(
     bind=engine,
-    class_=AsyncSession)
+    class_=AsyncSession,
+    expire_on_commit=False)
 
 Base = declarative_base()  # создает базовый класс для определения моделей БД (SQLalchemy)
 
 
 async def get_db():
     """получение сессии БД в асинхронном контексте."""
-    async with SessionLocal() as session:
+    async with async_session() as session:
         yield session
 
 

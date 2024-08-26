@@ -5,7 +5,9 @@ from sqlalchemy.future import select
 from schemas.schema_author import AuthorCreate
 
 async def create_author(db: AsyncSession, author: AuthorCreate):
-    db_author = Author(**author.model_dump()) 
+    db_author = Author(
+        fullname = author.fullname
+    )
     db.add(db_author)
     await db.commit()
     await db.refresh(db_author)

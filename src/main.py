@@ -1,5 +1,6 @@
 import uvicorn  # Веб-вервер для Python
 import asyncio 
+import json
 from auth.manager import auth_backend, current_active_user
 from db.db_config import init_db
 from fastapi import FastAPI, Depends
@@ -16,6 +17,10 @@ from auth.manager import fastapi_users
 
 app = FastAPI()
 
+# with open("/home/maniakalochka/openapi.json") as f:
+#     custom_openapi = json.load(f)
+
+# app.openapi_schema = custom_openapi
 
 fastapi_users = FastAPIUsers[User, int](  
     get_user_manager,

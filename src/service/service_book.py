@@ -5,7 +5,13 @@ from schemas.schema_book import BookCreate
 from typing import List
 
 async def create_book(db: AsyncSession, book: BookCreate) -> Book:
-    db_book = Book(**book.model_dump())
+    db_book = Book(
+        title = book.title,
+        description = book.description,
+        publication_year = book.publication_year,
+        page_count = book.page_count,
+        author_id = book.author,
+    )
     db.add(db_book)
     await db.commit()
     await db.refresh(db_book)
