@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
-from src.schemas.schema_author import Author, AuthorCreate
+from src.schemas.schema_author import Author, AuthorCreate, AuthorUpdate, AuthorDelete
 from src.db.db_config import get_db
 from src.service.service_author import create_author, get_authors, update_author, delete_author, get_one_author
 
@@ -25,9 +25,10 @@ async def get_all_author(skip: int = 0, limit: int = 10, db: Session = Depends(g
     return await get_authors(db, skip, limit)
 
 @router.put("/{author_id}", response_model=Author)
-async def update_one_author(author_id: int, db: Session = Depends(get_db)):
-    return await update_author(db=db, author_id=author_id)
+async def update_one_author(author_id: int, author_update: AuthorUpdate, db: Session = Depends(get_db)):
+    updated_author = await update_author(db=db, author_id=author_id, author_update=author_update)
+    return updated_author
 
-@router.delete("/author_id", response_model=Author)
+@router.delete("/{author_id}")
 async def delete_one_author(author_id: int, db: Session = Depends(get_db)):
     return await delete_author(db=db, author_id=author_id)
