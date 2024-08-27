@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.asyncio import AsyncSession
-from models.model_author import Author 
+from src.models.model_author import Author 
 from sqlalchemy.future import select
-from schemas.schema_author import AuthorCreate
+from src.schemas.schema_author import AuthorCreate
 
 async def create_author(db: AsyncSession, author: AuthorCreate):
     db_author = Author(

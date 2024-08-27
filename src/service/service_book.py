@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from models.model_book import Book
-from schemas.schema_book import BookCreate
+from src.models.model_book import Book
+from src.schemas.schema_book import BookCreate
 from typing import List
 
 async def create_book(db: AsyncSession, book: BookCreate) -> Book:

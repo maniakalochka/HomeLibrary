@@ -3,9 +3,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
-from schemas.schema_author import Author, AuthorCreate
-from db.db_config import get_db
-from service.service_author import create_author, get_authors
+from src.schemas.schema_author import Author, AuthorCreate
+from src.db.db_config import get_db
+from src.service.service_author import create_author, get_authors
 
 router = APIRouter()
 
