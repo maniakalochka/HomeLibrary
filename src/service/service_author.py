@@ -14,6 +14,12 @@ async def create_author(db: AsyncSession, author: AuthorCreate):
     await db.refresh(db_author)
     return db_author
 
+async def get_one_author(db: AsyncSession, author_id: int):
+    result = await db.execute(select(Author).where(Author.id == author_id))
+    author = result.scalars().first()
+    return author
+
+
 async def get_authors(db: AsyncSession, skip: int = 0, limit: int = 10):
     result = await db.execute(select(Author).offset(skip).limit(limit))
     return result.scalars().all()

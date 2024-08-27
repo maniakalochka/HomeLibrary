@@ -5,7 +5,7 @@ from typing import List
 
 from src.schemas.schema_author import Author, AuthorCreate
 from src.db.db_config import get_db
-from src.service.service_author import create_author, get_authors, update_author, delete_author
+from src.service.service_author import create_author, get_authors, update_author, delete_author, get_one_author
 
 router = APIRouter()
 
@@ -14,8 +14,8 @@ async def create_author_endpoint(author: AuthorCreate, db: Session = Depends(get
     return await create_author(db=db, author=author)
 
 @router.get("/{author_id}", response_model=Author)
-async def get_one_author(author_id: int, db: Session = Depends(get_db)):
-    author = await get_authors(db, author_id)
+async def get_one_author_endpoint(author_id: int, db: Session = Depends(get_db)):
+    author = await get_one_author(db, author_id)
     if author is None:
         raise HTTPException(status_code=404, detail="Author not found")
     return author

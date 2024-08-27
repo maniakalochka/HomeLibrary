@@ -8,6 +8,6 @@ class AuthorCreate(AuthorBase):
     pass
     
 class Author(AuthorBase):
-    pass
+    id: int
     class Config:
         from_attributes = True
