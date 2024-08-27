@@ -11,7 +11,7 @@ class UserCreate(BaseModel):
     is_admin: bool
 
  
-class UserRead:
+class UserRead(BaseModel):
     email: EmailStr
     f_name: str
     l_name: str
