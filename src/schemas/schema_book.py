@@ -12,7 +12,7 @@ class BookCreate(BookBase):
     pass
 
 class Book(BookBase):
-    id: int
+    pass
 
     class Config:
         from_attributes = True
